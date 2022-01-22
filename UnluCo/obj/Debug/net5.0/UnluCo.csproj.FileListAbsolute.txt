@@ -21,3 +21,9 @@ C:\Projeler\UnluCoBootcamp\UnluCoHafta2\UnluCo\UnluCo\obj\Debug\net5.0\UnluCo.dl
 C:\Projeler\UnluCoBootcamp\UnluCoHafta2\UnluCo\UnluCo\obj\Debug\net5.0\ref\UnluCo.dll
 C:\Projeler\UnluCoBootcamp\UnluCoHafta2\UnluCo\UnluCo\obj\Debug\net5.0\UnluCo.pdb
 C:\Projeler\UnluCoBootcamp\UnluCoHafta2\UnluCo\UnluCo\obj\Debug\net5.0\UnluCo.genruntimeconfig.cache
+C:\Projeler\UnluCoBootcamp\UnluCoHafta2\UnluCo\UnluCo\bin\Debug\net5.0\Microsoft.OpenApi.dll
+C:\Projeler\UnluCoBootcamp\UnluCoHafta2\UnluCo\UnluCo\bin\Debug\net5.0\Swashbuckle.AspNetCore.Swagger.dll
+C:\Projeler\UnluCoBootcamp\UnluCoHafta2\UnluCo\UnluCo\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerGen.dll
+C:\Projeler\UnluCoBootcamp\UnluCoHafta2\UnluCo\UnluCo\bin\Debug\net5.0\Swashbuckle.AspNetCore.SwaggerUI.dll
+C:\Projeler\UnluCoBootcamp\UnluCoHafta2\UnluCo\UnluCo\obj\Debug\net5.0\UnluCo.MvcApplicationPartsAssemblyInfo.cs
+C:\Projeler\UnluCoBootcamp\UnluCoHafta2\UnluCo\UnluCo\obj\Debug\net5.0\UnluCo.csproj.CopyComplete

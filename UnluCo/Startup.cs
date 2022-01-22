@@ -6,6 +6,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,6 +28,10 @@ namespace UnluCo
         {
 
             services.AddControllers();
+            services.AddSwaggerGen(item =>
+            {
+                item.SwaggerDoc("v1", new OpenApiInfo { Title = "UnluCo", Version = "v1" });
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -35,6 +40,8 @@ namespace UnluCo
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
+                app.UseSwagger();
+                app.UseSwaggerUI(item => item.SwaggerEndpoint("/swagger/v1/swagger.json", "UnluCo v1"));
             }
 
             app.UseHttpsRedirection();
