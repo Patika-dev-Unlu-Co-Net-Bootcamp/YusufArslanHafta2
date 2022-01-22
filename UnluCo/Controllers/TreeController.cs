@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using UnluCo.Entites;
+using UnluCo.Extensions;
 using UnluCo.Services.Abstract;
 
 namespace UnluCo.Controllers
@@ -66,7 +67,8 @@ namespace UnluCo.Controllers
             var tree = trees.SingleOrDefault(item => item.ID == newTree.ID);
             if (tree is not null)
                 return BadRequest("Ağaç mevcuttur.");
-
+            newTree.Name = newTree.Name.FirstLetterToUpper();
+            newTree.Note = newTree.Note.FirstLetterToUpper();
             trees.Add(newTree);
             _logger.Write($"{this.Request.Method} -- BAŞARILI");
             return Created("Ağaç eklendi.", newTree);
@@ -81,7 +83,7 @@ namespace UnluCo.Controllers
                 return BadRequest("Ağaç bulunamadı.");
             if (note is null)
                 return BadRequest("Note değeri boş bırakılamaz.");
-            editTree.Note = note != default ? note : editTree.Note;
+            editTree.Note = note != default ? note.FirstLetterToUpper() : editTree.Note;
 
             return Ok();
         }
@@ -104,9 +106,9 @@ namespace UnluCo.Controllers
             var editTree = trees.Find(item => item.ID == id);
             if (editTree is null)
                 return BadRequest("Ağaç mevcut değil");
-            editTree.Name = tree.Name;
+            editTree.Name = tree.Name.FirstLetterToUpper();
             editTree.Age = tree.Age;
-            editTree.Note = tree.Note;
+            editTree.Note = tree.Note.FirstLetterToUpper();
 
             return Ok($"{id}'ye sahip film düzenlendi.");
         }
