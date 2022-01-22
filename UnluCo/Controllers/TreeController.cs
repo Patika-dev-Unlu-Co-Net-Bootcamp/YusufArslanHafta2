@@ -70,7 +70,6 @@ namespace UnluCo.Controllers
             newTree.Name = newTree.Name.FirstLetterToUpper();
             newTree.Note = newTree.Note.FirstLetterToUpper();
             trees.Add(newTree);
-            _logger.Write($"{this.Request.Method} -- BAŞARILI");
             return Created("Ağaç eklendi.", newTree);
         }
 
