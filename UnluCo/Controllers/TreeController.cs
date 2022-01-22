@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using UnluCo.Entites;
+using UnluCo.Services.Abstract;
 
 namespace UnluCo.Controllers
 {
@@ -22,49 +23,59 @@ namespace UnluCo.Controllers
 
         };
 
+        private readonly ICustomLogger _logger;
+        public TreeController(ICustomLogger logger)
+        {
+            _logger = logger;
+        }
         [HttpGet("{id}")]
         public IActionResult GetById(int id) // Route 
         {
+            _logger.Write($"{this.Request.Method} metodu başlatıldı.");
             var tree = trees.SingleOrDefault(item => item.ID == id);
             if (tree == null)
                 return NotFound("Ağaç bulunamadı.");
-
+           
             return Ok(tree);
         }
 
-        [HttpGet("IdWithQuery")]
+        [HttpGet("idWithQuery")]
         public IActionResult GetByIdWithQuery([FromQuery] int id) // Query
         {
+            _logger.Write($"{this.Request.Method} metodu başlatıldı.");
             var tree = trees.SingleOrDefault(item => item.ID == id);
             if (tree == null)
                 return NotFound("Ağaç bulunamadı.");
-
+            
             return Ok(tree);
         }
 
         [HttpGet("all")] // Oluşturma sırasına göre sıralamakta
         public IActionResult GetAll()
         {
+            _logger.Write($"{this.Request.Method} metodu başlatıldı.");
             if (trees.Count == 0)
                 return NotFound("Ağaçlar bulunamadı.");
-
             return Ok(trees);
         }
 
         [HttpPost()]
         public IActionResult Create([FromBody] Tree newTree)
         {
+            _logger.Write($"{this.Request.Method} metodu başlatıldı.");
             var tree = trees.SingleOrDefault(item => item.ID == newTree.ID);
             if (tree is not null)
                 return BadRequest("Ağaç mevcuttur.");
 
             trees.Add(newTree);
+            _logger.Write($"{this.Request.Method} -- BAŞARILI");
             return Created("Ağaç eklendi.", newTree);
         }
 
         [HttpPatch("editNote/{id}")]
         public IActionResult EditNote(int id, [FromBody] string note)
         {
+            _logger.Write($"{this.Request.Method} metodu başlatıldı.");
             var editTree = trees.Find(item => item.ID == id);
             if (editTree is null)
                 return BadRequest("Ağaç bulunamadı.");
@@ -78,6 +89,7 @@ namespace UnluCo.Controllers
         [HttpDelete("{id}")]
         public IActionResult Delete(int id)
         {
+            _logger.Write($"{this.Request.Method} metodu başlatıldı.");
             var deleteTree = trees.Find(item => item.ID == id);
             if (deleteTree is null)
                 return BadRequest("Ağaç bulunamadı.");
@@ -88,6 +100,7 @@ namespace UnluCo.Controllers
         [HttpPut("{id}")]
         public IActionResult Edit(int id, [FromBody] Tree tree)
         {
+            _logger.Write($"{this.Request.Method} metodu başlatıldı.");
             var editTree = trees.Find(item => item.ID == id);
             if (editTree is null)
                 return BadRequest("Ağaç mevcut değil");
@@ -101,6 +114,7 @@ namespace UnluCo.Controllers
         [HttpGet("sortAscByName")] // isme göre artan sıralama
         public IActionResult SortAscByName()
         {
+            _logger.Write($"{this.Request.Method} metodu başlatıldı.");
             if (trees.Count <= 0)
                 return NotFound("Ağaçlar bulunamadı.");
             return Ok(trees.OrderBy(tree => tree.Name));
@@ -109,6 +123,7 @@ namespace UnluCo.Controllers
         [HttpGet("sortDescByName")] // isme göre azalan sıralama
         public IActionResult SortDescByName()
         {
+            _logger.Write($"{this.Request.Method} metodu başlatıldı.");
             if (trees.Count <= 0)
                 return NotFound("Ağaçlar bulunamadı.");
             return Ok(trees.OrderByDescending(tree => tree.Name));
@@ -117,6 +132,7 @@ namespace UnluCo.Controllers
         [HttpGet("sortAscByID")] // ID göre artan sıralama
         public IActionResult SortAscByID()
         {
+            _logger.Write($"{this.Request.Method} metodu başlatıldı.");
             if (trees.Count <= 0)
                 return NotFound("Ağaçlar bulunamadı.");
             return Ok(trees.OrderBy(tree => tree.ID));
@@ -125,6 +141,7 @@ namespace UnluCo.Controllers
         [HttpGet("sortDescByID")] // ID göre azalan sıralama
         public IActionResult SortDescByID()
         {
+            _logger.Write($"{this.Request.Method} metodu başlatıldı.");
             if (trees.Count <= 0)
                 return NotFound("Ağaçlar bulunamadı.");
             return Ok(trees.OrderByDescending(tree => tree.ID));
